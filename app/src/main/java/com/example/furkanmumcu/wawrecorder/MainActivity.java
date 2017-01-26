@@ -56,28 +56,48 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.btnStart:{
-                    AppLog.logString("Start Recording");
-
-                    enableButtons(true);
                     if (!isEmpty((EditText) findViewById(R.id.tw1))) {
+                        AppLog.logString("Start Recording");
+                        enableButtons(true);
                         EditText text = (EditText)findViewById(R.id.tw1);
                         String str = text.getText().toString();
                         recorder.setWavname(str);
                         recorder.startRecording();
+                        text.setEnabled(false);
+
+                        /*
+                        Example to threading and waiting
+                        Thread t = new Thread()
+                        {
+                            public void run() {
+                                recorder.startRecording();
+                                try {
+                                    Thread.sleep(5000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                AppLog.logString("selam");
+                            }
+                        };
+                        t.start(); */
+
                         break;
                     }
                         else {
                         Toast.makeText(MainActivity.this, "Please enter a name!", Toast.LENGTH_SHORT).show();
+                        break; /* instead of this, might be used following
+                                  if (!isEmpty((EditText) findViewById(R.id.tw1)))
+                                  in the next case */
                     }
-                    //break;
                 }
                 case R.id.btnStop:{
                     AppLog.logString("Stop Recording");
-
                     enableButtons(false);
                     recorder.stopRecording();
-
+                    EditText text = (EditText)findViewById(R.id.tw1);
+                    text.setEnabled(true);
                     break;
+
                 }
             }
         }
