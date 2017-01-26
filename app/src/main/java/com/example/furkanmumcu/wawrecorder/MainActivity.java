@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         text.setEnabled(false);
 
                         /*
-                        Example to threading and waiting
+                        Example to threading and waiting in the thread
                         Thread t = new Thread()
                         {
                             public void run() {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     }
-                        else {
+                    else {
                         Toast.makeText(MainActivity.this, "Please enter a name!", Toast.LENGTH_SHORT).show();
                         break; /* instead of this, might be used following
                                   if (!isEmpty((EditText) findViewById(R.id.tw1)))
@@ -97,11 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     EditText text = (EditText)findViewById(R.id.tw1);
                     text.setEnabled(true);
                     break;
-
                 }
             }
         }
     };
-
 
 }
