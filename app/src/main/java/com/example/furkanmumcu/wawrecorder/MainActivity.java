@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setButtonHandlers();
         enableButtons(false);
 
+        ((Button)findViewById(R.id.recordigs)).setOnClickListener(recordingsClick);
 
         int bufferSize = AudioRecord.getMinBufferSize(8000,
                 AudioFormat.CHANNEL_CONFIGURATION_MONO,
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         recorder.setWavname(str);
                         recorder.startRecording();
                         text.setEnabled(false);
+                        ((Button)findViewById(R.id.recordigs)).setEnabled(false);
 
                         /*
                         Example to threading and waiting in the thread
@@ -96,10 +98,18 @@ public class MainActivity extends AppCompatActivity {
                     recorder.stopRecording();
                     EditText text = (EditText)findViewById(R.id.tw1);
                     text.setEnabled(true);
+                    ((Button)findViewById(R.id.recordigs)).setEnabled(true);
                     break;
                 }
             }
         }
     };
+    
+    private View.OnClickListener recordingsClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this, SavedRecordingsActivity.class));
 
+        }
+    };
 }
